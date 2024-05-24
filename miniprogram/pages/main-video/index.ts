@@ -24,11 +24,30 @@ Page({
     const res = await getTopMV(this.data.offset)
     const { data, hasMore } = res
     this.setData({
-      videoList: data,
+      videoList: [...this.data.videoList, ...data],
       hasMore: hasMore
     })
 
     console.log(res)
-  }
+  },
+
+  onReachBottom(){
+    if(this.data.hasMore){
+      this.data.offset++
+      this.fetchTopMV()
+    }
+  },
+
+  async onPullDownRefresh(){
+    this.setData({
+      offset: 0,
+      videoList: [],
+      hasMore: true
+    })
+
+    await this.fetchTopMV()
+
+    wx.stopPullDownRefresh()
+  },
 
 })

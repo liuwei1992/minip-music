@@ -25,7 +25,10 @@ Component({
    */
   methods: {
     onItemTap(){
-      console.log('onItemTap')
+      const id = this.properties.itemData.id
+      wx.navigateTo({
+        url: `/pages/detail-video/index?id=${id}`
+      })
     }
   }
 })
