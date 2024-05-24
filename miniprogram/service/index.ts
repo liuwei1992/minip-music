@@ -26,14 +26,14 @@ class Request {
     })
   }
 
-  get<T>(options: WechatMiniprogram.RequestOption) {
+  get<T=any>(options: WechatMiniprogram.RequestOption) {
     return this.request<T>({
       ...options,
       method: 'GET'
     })
   }
 
-  post<T>(options: WechatMiniprogram.RequestOption) {
+  post<T=any>(options: WechatMiniprogram.RequestOption) {
     return this.request<T>({
       ...options,
       method: 'POST'

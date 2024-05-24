@@ -25,3 +25,30 @@ export function getTopMV(offset = 0, limit = 20){
     }
   })
 }
+
+export function getMVUrl(id: number){
+  return request.get({
+    url: '/mv/url',
+    data: {
+      id
+    }
+  })
+}
+
+export function getMVInfo(id: number){
+  return request.get({
+    url: '/mv/detail',
+    data: {
+      mvid:id
+    }
+  })
+}
+
+export function getMVRelated(id: number){
+  return request.get({
+    url: '/related/allvideo',
+    data: {
+      id
+    }
+  })
+}

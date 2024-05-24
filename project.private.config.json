@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "视频详情",
+          "pathName": "pages/detail-video/index",
+          "query": "id=14700127",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "视频",
           "pathName": "pages/main-video/index",
           "query": "",
