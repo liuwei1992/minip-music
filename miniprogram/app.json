@@ -2,7 +2,9 @@
   "pages": [
     "pages/main-music/index",
     "pages/main-video/index",
-    "pages/detail-video/index"
+    "pages/detail-video/index",
+    "pages/detail-menu/index",
+    "pages/detail-song/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
