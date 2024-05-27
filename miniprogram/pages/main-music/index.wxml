@@ -42,7 +42,7 @@
 
 <!-- ranking-item -->
 
-<view class="ranking" wx:if="{{isRankingData}}">
+<view class="ranking" wx:if="{{rankingInfos.length}}">
   <area-header title="巅峰榜" hasMore="{{false}}" />
   <block wx:for="{{rankingInfos}}" wx:key="id">
       <view class="item">

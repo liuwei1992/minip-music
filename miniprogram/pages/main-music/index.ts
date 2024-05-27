@@ -1,4 +1,6 @@
+import { TickSystem } from "XrFrame/systems"
 import { getMusicBanner, getPlaylistDetail, getSongMenuList } from "../../service/music"
+import { rankingsMap } from "../../utils/const"
 
 const RecomendSongsTypeId = 3778678
 // pages/main-music/index.ts
@@ -12,7 +14,6 @@ Page({
     recommendSongs: [],
     hotMenuList: [],
     recMenuList: [],
-    isRankingData: false,
     rankingInfos: []
   },
 
@@ -22,7 +23,8 @@ Page({
   onLoad() {
     // this.fetchMusicBanner()
     // this.fetchRecommendSongs()
-    this.fetchSongMenuList()
+    // this.fetchSongMenuList()
+    this.fetchRankingData()
   },
 
   async fetchSongMenuList() {
@@ -45,6 +47,24 @@ Page({
   async fetchMusicBanner() {
     const res = await getMusicBanner()
     this.setData({ banners: res.banners })
+  },
+
+  async fetchRankingData(){
+    const rankingInfos:any = []
+    const ps: Promise<any>[] = []
+    rankingsMap.forEach(([_, id]) =>{
+      ps.push(getPlaylistDetail(id))
+    })
+
+    const res = await Promise.all(ps)
+
+    res.forEach(res=>{
+      rankingInfos.push(res.playlist)
+    })
+
+    this.setData({
+      rankingInfos
+    })
   },
 
 
@@ -73,10 +93,10 @@ Page({
   },
 
   onRankingTap(event:any) {
-    console.log('onRankingTap', event.detail.key)
+    console.log('onRankingTap', event.detail)
 
     wx.navigateTo({
-      url: `/pages/detail-song/index?type=ranking&key=${event.detail.key}`,
+      url: `/pages/detail-song/index?type=ranking&id=${event.detail.id}`,
     })
   }
 })

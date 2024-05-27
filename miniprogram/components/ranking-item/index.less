@@ -1,1 +1,53 @@
 /* components/ranking-item/index.wxss */
+.ranking-item{
+  display: flex;
+  justify-content: space-between;
+  background-color: #eee;
+  border-radius: 12rpx;
+  margin-top: 12rpx;
+
+  .left{
+    padding: 24rpx;
+    overflow: hidden;
+
+    .title{
+      font-size: 34rpx;
+    }
+
+    .list{
+      margin-top: 10rpx;
+      font-size: 24rpx;
+
+      .item{
+        color: #333;
+        margin-top: 6rpx;
+
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .right{
+    position: relative;
+    display: flex;
+
+    .img{
+      width: 220rpx;
+      height: 220rpx;
+      background-size: cover;
+    }
+
+    .count{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      color: white;
+      font-size: 22rpx;
+      padding: 6rpx 10rpx;
+      border-radius: 12rpx;
+      background-color: rgba(0, 0, 0, .5);
+    }
+  }
+}

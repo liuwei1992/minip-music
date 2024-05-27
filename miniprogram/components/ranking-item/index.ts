@@ -8,10 +8,6 @@ Component({
     itemData: {
       type: Object,
       value: {}
-    },
-    key: {
-      type: String,
-      value: "newRanking"
     }
   },
 
@@ -26,8 +22,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onItemtap(){
-      this.triggerEvent('itemtap', this.properties.key)
+    onItemTap(){
+      this.triggerEvent('itemtap', this.properties.itemData.id)
     }
   }
 })
