@@ -20,21 +20,23 @@ page{
 
 }
 
-.list{
-  display: flex;
-  margin-left: -24rpx;
-  width: calc(100% + 48rpx);
-  white-space: nowrap;
-
-  height: 320rpx;
+.hot,.rec{
+  .list{
+    display: flex;
+    margin-left: -24rpx;
+    width: calc(100% + 48rpx);
+    white-space: nowrap;
   
-  .item{
-    width: 220rpx;
-    flex-shrink: 0;
-    margin-left: 24rpx;
-
-    &:last-of-type{
-      margin-right: 24rpx;
+    height: 320rpx;
+    
+    .item{
+      width: 220rpx;
+      flex-shrink: 0;
+      margin-left: 24rpx;
+  
+      &:last-of-type{
+        margin-right: 24rpx;
+      }
     }
   }
 }

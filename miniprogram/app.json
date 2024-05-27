@@ -4,7 +4,8 @@
     "pages/main-video/index",
     "pages/detail-video/index",
     "pages/detail-menu/index",
-    "pages/detail-song/index"
+    "pages/detail-song/index",
+    "pages/music-player/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

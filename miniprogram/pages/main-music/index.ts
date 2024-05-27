@@ -1,4 +1,3 @@
-import { TickSystem } from "XrFrame/systems"
 import { getMusicBanner, getPlaylistDetail, getSongMenuList } from "../../service/music"
 import { rankingsMap } from "../../utils/const"
 
@@ -21,9 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    // this.fetchMusicBanner()
-    // this.fetchRecommendSongs()
-    // this.fetchSongMenuList()
+    this.fetchMusicBanner()
+    this.fetchRecommendSongs()
+    this.fetchSongMenuList()
     this.fetchRankingData()
   },
 
@@ -79,6 +78,9 @@ Page({
 
   onRecommendItemClick(event: any) {
     console.log('onRecommendItemClick', event.detail.id)
+    wx.navigateTo({
+      url: `/pages/music-player/index?id=${event.detail.id}`,
+    })
 
   },
 
