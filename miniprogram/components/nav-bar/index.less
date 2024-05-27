@@ -1,1 +1,30 @@
 /* components/nav-bar/index.wxss */
+.nav-bar{
+  display: flex;
+  align-items: center;
+  color: white;
+
+  .left,.right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120rpx;
+    
+  }
+
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    
+  }
+
+  .default{
+    display: none;
+  }
+
+  .slot:empty + .default{
+    display: block;
+  }
+}

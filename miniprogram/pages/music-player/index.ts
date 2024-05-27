@@ -1,4 +1,5 @@
 import playerStore from "../../store/player"
+const app = getApp()
 
 // pages/music-player/index.ts
 Page({
@@ -7,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    windowHeight: 0,
+    currentLyricText: '歌词'
   },
 
   /**
@@ -17,10 +19,21 @@ Page({
     playerStore.bindBis(this)
     const id = query.id
     playerStore.dispatch('setPlay',id)
+    this.setData({
+      windowHeight: app.globalData.windowHeight
+    })
   },
 
   onUnload(){
     playerStore.unBindBis(this)
   },
+
+  swipeToSong(){
+
+  },
+
+  swipeToLyric(){
+
+  }
 
 })

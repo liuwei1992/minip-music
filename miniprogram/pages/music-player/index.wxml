@@ -1,12 +1,29 @@
 <!--pages/music-player/index.wxml-->
-<!-- <image class="bgImbg-imgag" mode="aspectFill" wx:if="{{currentSong}}" src="{{currentSong?.al?.picUrl}}"/> -->
-<!-- <view class="bg-cover"></view> -->
-<text>111</text>
-<text>111</text>
-<text>111</text>
-<text>111</text>
-<text>111</text>
-<text>111</text>
-<text>111</text>
-<text>111</text>
-<!-- <nav-bar></nav-bar> -->
+<image class="bg-img" mode="aspectFill" wx:if="{{currentSong}}" src="{{currentSong.song.al.picUrl}}" />
+<view class="bg-cover"></view>
+
+<nav-bar title="22323">
+  <view slot="center" class="tab">
+    <text bindtap="swipeToSong" class="active">歌曲</text>
+    <text> | </text>
+    <text bindtap="swipeToLyric">歌词</text>
+  </view>
+</nav-bar>
+
+<swiper style="height: {{windowHeight}}px;">
+  <swiper-item class="music">
+    <view class="album">
+      <image class="img" mode="widthFix" src="{{currentSong.song.al.picUrl}}" />
+    </view>
+    <view class="info">
+      <view class="name">{{currentSong.song.name}}</view>
+      <view class="singer">{{currentSong.song.ar[0].name}}</view>
+    </view>
+    <view class="lyric">
+      <text>{{currentLyricText}}</text>
+    </view>
+    <view class="progress"></view>
+    <view class="operation"></view>
+  </swiper-item>
+  <swiper-item class="lyric"></swiper-item>
+</swiper>
