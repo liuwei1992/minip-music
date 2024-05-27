@@ -18,6 +18,7 @@ class EventStore {
   actions: IActions | null = null
 
   private bis:any[] = []
+  private _updated = false
 
   constructor(options: IOptions) {
     if (!isObject(options.state)) {
@@ -43,16 +44,36 @@ class EventStore {
     this.state = _state
   }
 
+  private _setData(){
+    if(!this._updated){
+      this._updated = true
+      
+      const data:any = {}
+      Object.getOwnPropertyNames(this.state).forEach(key => {
+        data[key] = this.state[key]
+      })
+
+      this.bis.forEach((bi: any) => {
+        bi.setData(data)
+      })
+    }
+  }
+
   private _handler = {
     get: function (target:any, key: PropertyKey) {
       return target[key]
     },
 
     set: (target: any, key: PropertyKey, newValue: any)=>{
-      this.bis.forEach(bi => {
-        bi.setData({
-          [key]: newValue
-        })
+      // this.bis.forEach(bi => {
+      //   bi.setData({
+      //     [key]: newValue
+      //   })
+      // })
+      this._updated = false
+      // 合并执行wx.setDate
+      Promise.resolve().then(()=>{
+        this._setData()
       })
 
       target[key] = newValue
@@ -62,6 +83,12 @@ class EventStore {
 
   bindBis(bi:any){
     this.bis.push(bi)
+  }
+
+  unBindBis(bi:any){
+    if(this.bis[bi]){
+      delete this.bis[bi]
+    }
   }
 
   dispatch(actionName: string, ...args: any[]){

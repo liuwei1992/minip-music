@@ -7,19 +7,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad(query) {
     playerStore.bindBis(this)
+    const id = query.id
+    playerStore.dispatch('setPlay',id)
   },
 
-  bindtap(){
-    console.log(this)
-    playerStore.state.test = 'nnnnnn'
-  }
+  onUnload(){
+    playerStore.unBindBis(this)
+  },
 
 })

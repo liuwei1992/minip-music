@@ -1,2 +1,12 @@
 <!--pages/music-player/index.wxml-->
-<text bindtap="bindtap">pages/music-player/index.wxml {{test}}</text>
+<!-- <image class="bgImbg-imgag" mode="aspectFill" wx:if="{{currentSong}}" src="{{currentSong?.al?.picUrl}}"/> -->
+<!-- <view class="bg-cover"></view> -->
+<text>111</text>
+<text>111</text>
+<text>111</text>
+<text>111</text>
+<text>111</text>
+<text>111</text>
+<text>111</text>
+<text>111</text>
+<!-- <nav-bar></nav-bar> -->
