@@ -38,7 +38,8 @@ Component({
    */
   methods: {
     onLeftTap(){
-      this.triggerEvent('leftTap')
+      // this.triggerEvent('leftTap')
+      wx.navigateBack()
     }
   }
 })

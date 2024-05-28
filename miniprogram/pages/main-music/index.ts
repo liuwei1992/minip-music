@@ -1,4 +1,5 @@
 import { getMusicBanner, getPlaylistDetail, getSongMenuList } from "../../service/music"
+import playerStore from "../../store/player"
 import { rankingsMap } from "../../utils/const"
 
 const RecomendSongsTypeId = 3778678
@@ -77,7 +78,7 @@ Page({
   },
 
   onRecommendItemClick(event: any) {
-    console.log('onRecommendItemClick', event.detail.id)
+    playerStore.dispatch('setPlayList', this.data.recommendSongs )
     wx.navigateTo({
       url: `/pages/music-player/index?id=${event.detail.id}`,
     })

@@ -11,4 +11,4 @@ export enum PlayMode {
   RANDOM = 'random'
 }
 
-export const lyricItemLineHeight = 30
+export const lyricItemLineHeight = 32

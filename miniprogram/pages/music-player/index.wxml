@@ -24,7 +24,7 @@
       <text>{{currentSong.lyric[currentLyricIndex][1]}}</text>
     </view>
     <view class="progress">
-      <slider class="slider" block-size="{{12}}" value="{{sliderValue}}" bindchange="onSliderChange" bindchanging="onSliderChanging"></slider>
+      <slider class="slider" block-size="{{12}}" value="{{(currentTime / currentSong.song.dt) * 100}}" bindchange="onSliderChange" bindchanging="onSliderChanging"></slider>
       <view class="time">
         <view>{{fmt.formatTime(currentTime)}}</view>
         <view>{{fmt.formatTime(currentSong.song.dt)}}</view>

@@ -68,16 +68,19 @@ class EventStore<S extends IState> {
     },
 
     set: (target: any, key: PropertyKey, newValue: any)=>{
-      // this.bis.forEach(bi => {
-      //   bi.setData({
-      //     [key]: newValue
-      //   })
-      // })
+
+      if(target[key] === newValue) return true
+
       this._updated = false
       // 合并执行wx.setDate
       Promise.resolve().then(()=>{
         this._setData()
       })
+
+      const events = this._stateEvent[key]
+      events?.forEach((cb: Function) => {
+        cb(newValue)
+      });
 
       target[key] = newValue
       return true

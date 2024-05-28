@@ -10,10 +10,10 @@ Page({
    */
   data: {
     windowHeight: 0,
-    sliderValue:0,
+    sliderValue: 0,
     playModeName: PlayMode.ORDER,
-    currentPage:1,
-    lyricScrollTop: 0
+    currentPage: 0,
+    lyricScrollTop: 0,
   },
 
   /**
@@ -22,49 +22,60 @@ Page({
   onLoad(query) {
     playerStore.bindBis(this)
     const id = query.id
-    playerStore.dispatch('setPlay',id)
+    playerStore.dispatch('setPlay', id)
     this.setData({
       windowHeight: app.globalData.windowHeight,
       lyricItemLineHeight
     })
+
+    playerStore.onState('currentLyricIndex', this.onLyricIndexChange)
   },
 
-  onUnload(){
+  onUnload() {
     playerStore.unBindBis(this)
+    playerStore.offState('currentLyricIndex', this.onLyricIndexChange)
   },
 
-  swipeToSong(){
+  onLyricIndexChange(value: number) {
+    this.setData({ lyricScrollTop: value * lyricItemLineHeight })
+  },
+
+  swipeToSong() {
     this.setData({ currentPage: 0 })
   },
 
-  swipeToLyric(){
+  swipeToLyric() {
     this.setData({ currentPage: 1 })
   },
 
-  onSwiperChange(event: any){
+  onSwiperChange(event: any) {
     const currentPage = event.detail.current
     this.setData({ currentPage })
   },
 
-  onSliderChange(){},
+  onSliderChange() { },
 
-  onSliderChanging(){},
+  onSliderChanging() { },
 
-  onModeBtnTap(){
+  onModeBtnTap() {
     playerStore.dispatch('changeMode')
   },
 
-  onPrevBtnTap(){
+  onPrevBtnTap() {
     playerStore.dispatch('changeSong', false)
 
   },
 
-  onNextBtnTap(){
+  onNextBtnTap() {
     playerStore.dispatch('changeSong', true)
 
   },
 
-  onSongListTap(){
+  onPlayOrPauseTap() {
+    playerStore.dispatch('changePlayStatus')
+  },
+
+  onSongListTap() {
     console.log('onSongListTap 未实现')
   }
 
