@@ -50,21 +50,81 @@
     }
   }
 
-  .lyric{
+  .music-lyric{
     width: 100%;
     display: flex;
     justify-content: center;
     font-size: 28rpx;
-    
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .progress{}
-  .operation{}
+  .progress{
+    .slider{
+      padding: 0;
+      margin: 0 0 12rpx 18rpx;
+    }
+
+    .time{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 24rpx;
+    }
+  }
+  .operation{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 20rpx 0 30rpx;
+
+    .btn{
+      width: 60rpx;
+      height: 60rpx;
+    }
+
+    .btn-mode {
+      width: 80rpx;
+      height: 80rpx;
+    }
+    .btn-play{
+      width: 120rpx;
+      height: 120rpx;
+    }
+  }
 }
 
-.lyric{
+.lyric-list{
+  color: #989898;
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 30rpx 0;
+  overflow: scroll;
 
+  .place{
+    height: calc(50% - 20px);
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .active{
+    color: white;
+    font-size: 20px;
+  }
 }

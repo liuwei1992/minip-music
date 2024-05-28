@@ -4,3 +4,11 @@ export const rankingsMap:
 ]
 
 export const NavBarHeight = 44
+
+export enum PlayMode {
+  ORDER = 'order',
+  REPEAT = 'repeat',
+  RANDOM = 'random'
+}
+
+export const lyricItemLineHeight = 30

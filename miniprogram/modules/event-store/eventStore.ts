@@ -1,26 +1,29 @@
 import { isObject } from "./utils"
 
-interface IOptions {
+interface IOptions<S> {
   state: IState,
-  actions?: IActions
+  actions?: IActions<S>
 }
 
 interface IState {
   [p: string]: any
 }
 
-interface IActions {
-  [p: string]: Function
+type IActionsFun<S> = (state: S, ...args: any[]) => void
+
+interface IActions<S> {
+  [p: string]: IActionsFun<S>
 }
 
-class EventStore {
-  state:IState = {}
-  actions: IActions | null = null
+class EventStore<S extends IState> {
+  state:S = {} as S
+  actions: IActions<S> | null = null
 
   private bis:any[] = []
   private _updated = false
+  private _stateEvent = {} as any
 
-  constructor(options: IOptions) {
+  constructor(options: IOptions<S>) {
     if (!isObject(options.state)) {
       throw new TypeError("the state must be object type")
     }
@@ -81,6 +84,19 @@ class EventStore {
     }
   }
 
+  onState(statekey: string, cb: Function){
+    const events = this._stateEvent[statekey] || []
+    events.push(cb)
+    this._stateEvent[statekey] = events
+  }
+
+  offState(statekey: string, cb: Function){
+    const events = this._stateEvent[statekey]
+    if(events){
+      deleteEvent(events, cb)
+    }
+  }
+
   bindBis(bi:any){
     this.bis.push(bi)
   }
@@ -95,6 +111,11 @@ class EventStore {
     this.actions?.[actionName]?.(this.state,...args)
   }
 
+}
+
+function deleteEvent(events: Function[], cb: Function){
+  const index = events.findIndex(item => item == cb)
+  events.slice(index, 1)
 }
 
 export default EventStore
